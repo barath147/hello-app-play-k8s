@@ -19,6 +19,7 @@ spec:
       containers:
         - name: hello-app-play
           image: docker.io/barath147/hello-app-play:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
       imagePullSecrets:
