@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+build:
+  artifacts:
+    - image: barath147/hello-app-play:v1
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - kube/dev/deployment.yaml
+      - kube/dev/service.yaml
