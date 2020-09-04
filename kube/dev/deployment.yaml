@@ -5,6 +5,7 @@ metadata:
   labels:
     app: hello
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: hello
@@ -17,6 +18,8 @@ spec:
     spec:
       containers:
         - name: hello-app-play
-          image: barath147/hello-app-play:v1
+          image: docker.io/barath147/hello-app-play:latest
           ports:
             - containerPort: 8080
+      imagePullSecrets:
+        - name: image-pull-secret

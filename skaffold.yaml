@@ -1,8 +1,13 @@
 apiVersion: skaffold/v2beta7
 kind: Config
 build:
+  tagPolicy:
+    sha256: {}
+  local:
+    push: true
+    useDockerCLI: true
   artifacts:
-    - image: barath147/hello-app-play:v1
+    - image: docker.io/barath147/hello-app-play
       docker:
         dockerfile: Dockerfile
 deploy:

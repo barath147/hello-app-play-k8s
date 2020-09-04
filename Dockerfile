@@ -1,5 +1,7 @@
-FROM tomcat:jdk11-openjdk-slim
+FROM openjdk:11-jdk-slim
 
 MAINTAINER barath147
 
-COPY target/hello-app-play-k8s-*.war /usr/local/tomcat/webapps/hello-app.war
+COPY target/hello-app-play-k8s-*.jar hello-app.jar
+
+ENTRYPOINT ["java","-jar","/hello-app.jar"]
