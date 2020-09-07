@@ -6,13 +6,14 @@ build:
       path: /home/dapadmin/.docker/config.json
   tagPolicy:
     sha256: {}
-  local:
-    push: true
-    useDockerCLI: true
+  #local:
+    #push: true
+    #useDockerCLI: true
   artifacts:
     - image: docker.io/barath147/hello-app-play
-      docker:
-        dockerfile: Dockerfile
+      kaniko:
+        docker:
+          dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
