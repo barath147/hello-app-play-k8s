@@ -20,3 +20,4 @@ node {
     	slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> SonarQube Static Code Analysis Scan Complete", tokenCredentialId: 'SLACK-TOKEN'
    	}
 }
+
