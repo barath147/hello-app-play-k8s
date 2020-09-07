@@ -19,5 +19,15 @@ node {
     	}
     	slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> SonarQube Static Code Analysis Scan Complete", tokenCredentialId: 'SLACK-TOKEN'
    	}
+
+   	stage('Skaffold Build') {
+        /* withCredentials([usernamePassword(credentialsId: 'SONAR-QUBE-CREDS', passwordVariable: 'SONAR_PASS', usernameVariable: 'SONAR_USER')]) {
+        	withSonarQubeEnv('SonarQube') {
+        		sh 'mvn $SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASS -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=. -Dsonar.exclusions=.'
+        	}
+        } */
+        sh "skaffold build"
+        slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> Docker Image Build and Upload to Registry using Skaffold Complete", tokenCredentialId: 'SLACK-TOKEN'
+    }
 }
 

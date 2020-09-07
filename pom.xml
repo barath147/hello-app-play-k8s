@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>hello-app-play-k8s</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>spring-boot-hellow-app</name>
+	<name>hello-app-play-k8s</name>
 	<description>Demo project for Spring Boot and Kubernetes</description>
 	<packaging>jar</packaging>
 
