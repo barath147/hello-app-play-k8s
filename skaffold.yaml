@@ -11,9 +11,10 @@ build:
     #useDockerCLI: true
   artifacts:
     - image: docker.io/barath147/hello-app-play
+      #docker:
+        #dockerfile: Dockerfile
       kaniko:
-        docker:
-          dockerfile: Dockerfile
+        dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
