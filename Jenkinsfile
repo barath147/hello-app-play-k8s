@@ -21,12 +21,9 @@ node {
    	}
 
    	stage('Skaffold Build') {
-        /* withCredentials([usernamePassword(credentialsId: 'SONAR-QUBE-CREDS', passwordVariable: 'SONAR_PASS', usernameVariable: 'SONAR_USER')]) {
-        	withSonarQubeEnv('SonarQube') {
-        		sh 'mvn $SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASS -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=. -Dsonar.exclusions=.'
-        	}
-        } */
-        sh "docker login -u barath147 -p DOCK@Barath147 && skaffold build"
+        withCredentials([usernamePassword(credentialsId: 'DOCKER-HUB-CREDS', passwordVariable: 'DOCKER_HUB_PASS', usernameVariable: 'DOCKER_HUB_USER')]) {
+            sh "docker login -u ${env.DOCKER_HUB_USER} -p ${DOCKER_HUB_PASS} && skaffold build"
+        }
         slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> Docker Image Build and Upload to Registry using Skaffold Complete", tokenCredentialId: 'SLACK-TOKEN'
     }
 }
