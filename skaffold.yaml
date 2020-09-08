@@ -6,18 +6,18 @@ build:
       path: /home/dapadmin/.docker/config.json
   tagPolicy:
     sha256: {}
-  #local:
-    #push: true
+  local:
+    push: true
     #useDockerCLI: true
   artifacts:
     - image: docker.io/barath147/hello-app-play
-      #docker:
-        #dockerfile: Dockerfile
-      kaniko:
+      docker:
         dockerfile: Dockerfile
-        env:
-          - KUBERNETES_SERVICE_HOST: https://192.168.99.100
-          - KUBERNETES_SERVICE_PORT: 8443
+      #kaniko:
+        #dockerfile: Dockerfile
+        #env:
+          #- KUBERNETES_SERVICE_HOST: https://192.168.99.100
+          #- KUBERNETES_SERVICE_PORT: 8443
 deploy:
   kubectl:
     manifests:
