@@ -16,8 +16,8 @@ build:
       kaniko:
         dockerfile: Dockerfile
         env:
-          KUBERNETES_SERVICE_HOST: https://192.168.99.100
-          KUBERNETES_SERVICE_PORT: 8443
+          - KUBERNETES_SERVICE_HOST: https://192.168.99.100
+          - KUBERNETES_SERVICE_PORT: 8443
 deploy:
   kubectl:
     manifests:
