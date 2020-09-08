@@ -8,7 +8,8 @@ build:
     sha256: {}
   local:
     push: true
-    #useDockerCLI: true
+    useDockerCLI: true
+    useBuildkit: true
   artifacts:
     - image: docker.io/barath147/hello-app-play
       docker:
