@@ -26,7 +26,7 @@ node {
         		sh 'mvn $SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASS -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=. -Dsonar.exclusions=.'
         	}
         } */
-        sh "docker login -u barath147 -p DOCK@Barath147 && skaffold build --default-repo docker.io"
+        sh "docker login -u barath147 -p DOCK@Barath147 && skaffold build"
         slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> Docker Image Build and Upload to Registry using Skaffold Complete", tokenCredentialId: 'SLACK-TOKEN'
     }
 }
