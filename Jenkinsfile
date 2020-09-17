@@ -26,5 +26,18 @@ node {
         }
         slackSend channel: 'dap-devops-case-study-group', failOnError: true, message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) ==>> Docker Image Build and Upload to Registry using Skaffold Complete", tokenCredentialId: 'SLACK-TOKEN'
     }
+
+    stage('Deploy to Staging') {
+        steps{
+            git branch: "${env.BRANCH_NAME}", credentialsId: 'GITHUB-CREDS', url: 'https://github.com/barath147/hello-app-play-k8s.git'
+            step([$class: 'KubernetesEngineBuilder',
+                projectId: "linear-enigma-288410",
+                clusterName: "dap-cluster",
+                zone: "us-central1-c",
+                manifestPattern: 'kube/dev/',
+                credentialsId: "my-first-sa",
+                verifyDeployments: true])
+        }
+    }
 }
 
