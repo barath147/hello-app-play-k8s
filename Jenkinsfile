@@ -28,7 +28,7 @@ node {
     }
 
     stage('Deploy to Staging') {
-        git branch: "${env.BRANCH_NAME}", credentialsId: 'GITHUB-CREDS', url: 'https://github.com/barath147/hello-app-play-k8s.git'
+        //git branch: "${env.BRANCH_NAME}", credentialsId: 'GITHUB-CREDS', url: 'https://github.com/barath147/hello-app-play-k8s.git'
         step([$class: 'KubernetesEngineBuilder',
             projectId: "linear-enigma-288410",
             clusterName: "dap-cluster",
